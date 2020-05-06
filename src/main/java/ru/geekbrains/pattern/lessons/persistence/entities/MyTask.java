@@ -1,46 +1,37 @@
 package ru.geekbrains.pattern.lessons.persistence.entities;
 
-
+import lombok.*;
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.MainEntity;
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.interfaces.ICreator;
+
+import javax.persistence.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class MyTask extends MainEntity implements ICreator {
 
-    private String description;
     private boolean done;
-    private List checklists = new LinkedList<>();
+    private String description;
+    private String name;
+    @OneToOne
+    @JoinColumn(name = "timeframe")
     private Timeframe timeframe;
 
-    public Timeframe getTimeframe() {
-        return timeframe;
-    }
+    @OneToMany
+    @JoinTable(
+            name = "mytask_checklists",
+            joinColumns = @JoinColumn(name = "id_task"),
+            inverseJoinColumns = @JoinColumn(name = "id_checklist")
+    )
+    private List checklists = new LinkedList<>();
 
-    public List getChecklists() {
-        return checklists;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setTimeframe(Timeframe timeframe) {
-        this.timeframe = timeframe;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
 
     @Override
     public String toString() {
@@ -53,7 +44,7 @@ public class MyTask extends MainEntity implements ICreator {
 
     @Override
     public void add() {
-        checklists.add(new Checklist("Список"));
+        checklists.add(new Checklist().builder().name("Список").build());
     }
 
     @Override

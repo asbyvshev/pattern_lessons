@@ -1,27 +1,35 @@
 package ru.geekbrains.pattern.lessons.persistence.entities;
 
-
-
+import lombok.*;
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.MainEntity;
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.interfaces.ICreator;
+
+import javax.persistence.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Checklist extends MainEntity implements ICreator {
-    List<Element> checklist = new LinkedList<>();
 
-    public Element find(String name){
-        return null;
-    }
+    private String name;
+
+    @OneToMany
+    @JoinTable(
+            name = "list_elements",
+            joinColumns = @JoinColumn(name = "id_checklist"),
+            inverseJoinColumns = @JoinColumn(name = "id_element")
+    )
+    List<Element> checklist = new LinkedList<>();
 
     @Override
     public void add() {
         checklist.add(new Element());
-    }
-
-    public Checklist(String name) {
-        setName(name);
     }
 
     @Override
@@ -31,9 +39,6 @@ public class Checklist extends MainEntity implements ICreator {
             stringBuilder.append(element.getName() + " ");
         }
         return stringBuilder.toString();
-    }
-
-    public Checklist() {
     }
 
     @Override

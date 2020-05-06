@@ -1,7 +1,6 @@
 package ru.geekbrains.pattern.lessons.persistence.entities.utils;
 
 
-
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.interfaces.Observer;
 
 import java.util.ArrayList;

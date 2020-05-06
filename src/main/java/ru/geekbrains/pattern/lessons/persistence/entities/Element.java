@@ -1,12 +1,17 @@
 package ru.geekbrains.pattern.lessons.persistence.entities;
 
-
+import lombok.*;
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.MainEntity;
 
-public class Element extends MainEntity {
-    private boolean checked;
+import javax.persistence.Entity;
 
-    public boolean isChecked() {
-        return checked;
-    }
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Element extends MainEntity {
+
+    private boolean checked;
+    private String name;
 }
