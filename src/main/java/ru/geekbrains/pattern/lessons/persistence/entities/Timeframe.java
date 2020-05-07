@@ -5,6 +5,9 @@ import ru.geekbrains.pattern.lessons.persistence.entities.utils.SubjectObservati
 import ru.geekbrains.pattern.lessons.persistence.entities.utils.interfaces.Observer;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import java.util.Date;
 
@@ -15,16 +18,17 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Timeframe extends SubjectObservations {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date dataCreate;
     private Date dataExecution;
     private String notify;
 
-    public Timeframe(Observer observer) {
-        this.dataCreate = new Date();
-        attach(observer);
-    }
+//    public Timeframe(Observer observer) {
+//        this.dataCreate = new Date();
+//        attach(observer);
+//    }
 
     @Override
     public String toString() {

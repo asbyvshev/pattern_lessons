@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+    <div style="text-align: center;">
+        <h1>Task</h1>
+    </div>
+
+    <hr>
+    <br>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+<!--            <th>Дата добавления</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task, iterator : ${tasks}">
+
+            <td th:text="${iterator.index + 1}"></td>
+            <td>
+                <a th:href="@{'/' + ${tast.id}}">[[ ${task.name} ]]</a>
+            </td>
+            <td th:text="${tast.description}"></td>
+<!--            <td th:text="${#dates.format(product.added, 'dd-MM-yyyy')}"></td>-->
+<!--            <td>-->
+<!--                <span style="color:green;" th:if="${product.available}">Есть</span>-->
+<!--                <span style="color:red;" th:unless="${product.available}">Нет</span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <a th:href="@{'/cart/add/' + ${product.id}}">-->
+<!--                        <img th:src="@{'/products/images/cart.png'}" alt="" width="30px" height="30px" />-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+            <!--                        </span>-->
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+</body>
+</html>

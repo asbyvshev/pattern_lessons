@@ -1,10 +1,10 @@
 server:
   servlet:
-    context-path: /timem‡nager
+    context-path: /timemanager
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/timem‡nager?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/timem–∞nager?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: geek
     password: geek

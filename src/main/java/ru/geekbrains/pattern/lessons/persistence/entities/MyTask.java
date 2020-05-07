@@ -24,13 +24,13 @@ public class MyTask extends MainEntity {
     @JoinColumn(name = "timeframe")
     private Timeframe timeframe;
 
-    @OneToMany
+    @ManyToMany//(mappedBy = "id_task")
     @JoinTable(
             name = "mytask_checklists",
             joinColumns = @JoinColumn(name = "id_task"),
             inverseJoinColumns = @JoinColumn(name = "id_checklist")
     )
-    private List checklists = new LinkedList<>();
+    private List<Checklist> checklists;
 
 
     @Override

@@ -25,7 +25,7 @@ public class Checklist extends MainEntity implements ICreator {
             joinColumns = @JoinColumn(name = "id_checklist"),
             inverseJoinColumns = @JoinColumn(name = "id_element")
     )
-    List<Element> checklist = new LinkedList<>();
+    List<Element> checklist;
 
     @Override
     public void add() {
