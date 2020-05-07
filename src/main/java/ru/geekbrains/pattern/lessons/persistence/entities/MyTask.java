@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class MyTask extends MainEntity implements ICreator {
+public class MyTask extends MainEntity {
 
     private boolean done;
     private String description;
@@ -40,15 +40,5 @@ public class MyTask extends MainEntity implements ICreator {
                 ", checklists=" + checklists +
                 ", timeframe=" + timeframe +
                 '}';
-    }
-
-    @Override
-    public void add() {
-        checklists.add(new Checklist().builder().name("Список").build());
-    }
-
-    @Override
-    public void remove(Object o) {
-        checklists.remove(o);
     }
 }
